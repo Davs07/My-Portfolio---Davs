@@ -1,16 +1,17 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import logo from "./img/DAVS-logo.png";
 import D from "./img/D.png";
-import heztorMockup from "./img/Heztor-mockup.jpg";
+import heztorMockup from "./img/mockup-heztor.jpg";
 import davsPicture from "./img/DAVS-PICTURE-1.jpg";
+import { HashRouter, Link } from "react-router-dom";
 
 import "./App.css";
 
 function App() {
-  const arrayMySkills =
-    "HTML CSS JS REACT JAVA SPRING MYSQL GSAP GIT TAILWIND SASS";
+  const [changeLanguage, setChangeLanguage] = useState(false);
+  const handleChangeLanguage = () => {
+    setChangeLanguage(!changeLanguage);
+  };
   const skills = [
     {
       id: 1,
@@ -80,13 +81,91 @@ function App() {
     },
   ];
 
+  const allEnglish = !changeLanguage
+    ? {
+        navbar: ["About", "Skills", "Projects", "Contact"],
+        heroText: "HI, I'M DAVS",
+        myDescription: `I aim to create innovative technological solutions that not only
+    solve problems but also inspire and connect with users in a
+    meaningful way.`,
+        about: [
+          "My name is Davy Rodríguez, and I am a passionate web developer dedicated to transforming ideas into captivating digital experiences.",
+          "With continually growing technical skills and a creative mindset, my goal is to take each project to the next level by combining efficiency in backend development with meticulous aesthetics in the frontend.",
+          "My commitment to constant learning and my unique perspective, influenced by my passion for music, literature, film, and video games, make me an enthusiastic and adaptable candidate. Discover how I can bring a distinctive touch to your team and projects!",
+        ],
+        skills:
+          "With an arsenal of technological tools, I am prepared to breathe life into any project. My constant curiosity drives me to refine my skills and explore new technologies.",
+        projects:
+          "In my experience, I prioritize quality over quantity. Each project is an opportunity to blend creativity and technical skills, emphasizing excellence over quantity, transforming ideas into impactful and enduring digital experiences.",
+        contact: [
+          "Do you have a project in mind?",
+          "Allow me to help bring it to life",
+          "and become a valuable part of your team.",
+        ],
+      }
+    : {
+        navbar: ["Sobre", "Habilidades", "Proyectos", "Contacto"],
+        heroText: "HOLA, SOY DAVS",
+        myDescription: `Busco crear soluciones tecnológicas innovadoras que no solo resuelvan problemas, sino que también inspiren y conecten con los usuarios de manera significativa.`,
+        about: [
+          "Mi nombre es Davy Rodríguez y soy un apasionado desarrollador web dedicado a transformar ideas en experiencias digitales cautivadoras.",
+          "Con habilidades técnicas en constante crecimiento y una mente creativa, mi objetivo es llevar cada proyecto al siguiente nivel, combinando eficiencia en el desarrollo backend con una estética cuidadosa en el frontend.",
+          "Mi compromiso con el aprendizaje constante y mi perspectiva única, influenciada por mi pasión por la música, la literatura, el cine y los videojuegos, me convierten en un candidato entusiasta y adaptable. ¡Descubre cómo puedo aportar un toque distintivo a tu equipo y proyectos!",
+        ],
+        skills:
+          "Con un arsenal tecnológico, estoy preparado para dar vida a cualquier proyecto. Mi curiosidad constante me impulsa a perfeccionar habilidades y explorar nuevas tecnologías.",
+        projects:
+          "En mi experiencia, priorizo calidad sobre cantidad. Cada proyecto es una oportunidad para fusionar creatividad y habilidades técnicas, destacando la excelencia sobre la cantidad, transformando ideas en experiencias digitales impactantes y duraderas.",
+        contact: [
+          "¿Tienes algún proyecto en mente?",
+          "Permíteme ayudarte a darle vida",
+          "y formar parte de tu equipo.",
+        ],
+      };
+
+  const texts = !changeLanguage
+    ? {
+        options: ["About", "Skills", "Projects", "Contact"],
+        subTitles: ["About me", "My skills", "My projects", "Contact me"],
+        form: [
+          "Name",
+          "Your name",
+          "Email",
+          "Your email",
+          "Message",
+          "Your message",
+          "Submit",
+        ],
+      }
+    : {
+        options: ["Sobre", "Habilidades", "Proyectos", "Contacto"],
+        subTitles: [
+          "Sobre mí",
+          "Mis habilidades",
+          "Mis proyectos",
+          "Contáctame",
+        ],
+        form: [
+          "Nombre",
+          "Tu nombre",
+          "Email",
+          "Tu email",
+          "Mensaje",
+          "Tu mensaje",
+          "Enviar",
+        ],
+      };
+
+  const links = ["about", "skills", "projects", "contact"];
+
   return (
-    <>
+    <HashRouter>
       <main className="min-h-screen font-satoshi w-screen flex flex-col bg-slate-100">
         <header className="fixed px-4 z-10 bg-slate-100 text-dark h-20 w-full md:block">
           <div className="container mx-auto flex items-center justify-between h-full">
             <div>
-              <a href="" className="flex justify-center items-start gap-2">
+              <link></link>
+              <a href="#" className="flex justify-center items-start gap-2">
                 <h2 className="text-6xl font-work font-bold">DAVS</h2>
                 <span className="a-logo flex items-center justify-center border border-2 h-8 w-8 border-black p-1 hover:bg-black">
                   <img src={logo} alt="" className=" w-10 " />
@@ -96,30 +175,19 @@ function App() {
             <div className="text-center flex justify-evenly gap-x-4 ">
               <nav className="contents font-semibold text-base hidden lg:text-lg lg:flex ">
                 <ul className="mx-auto flex items-center">
-                  <li className="p-5 xl:p-8 active">
-                    <a href="">
-                      <span>About</span>
-                    </a>
-                  </li>
-                  <li className="p-5 xl:p-8">
-                    <a href="">
-                      <span>Skills</span>
-                    </a>
-                  </li>
-                  <li className="p-5 xl:p-8">
-                    <a href="">
-                      <span>Projects</span>
-                    </a>
-                  </li>
-                  <li className="p-5 xl:p-8">
-                    <a href="">
-                      <span>Contact</span>
-                    </a>
-                  </li>
+                  {texts.options.map((option, index) => (
+                    <li key={index} className="p-5 xl:p-8">
+                      <a href={`#${links[index]}`} className="hover:text-black">
+                        <span>{option}</span>
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </nav>
-              <button className="border border-2 flex items-center border-black font-bold h-5 px-1 py-0 my-auto place-items-center hover:bg-black hover:text-white">
-                es | en
+              <button
+                className="border border-2 flex  items-center border-black font-bold  p-1 my-auto place-items-center hover:bg-black hover:text-white"
+                onClick={handleChangeLanguage}>
+                {!changeLanguage ? "Español" : "English"}
               </button>
             </div>
           </div>
@@ -128,32 +196,32 @@ function App() {
           <h1
             className=" font-black font-work
             text-6xl  md:text-9xl lg:text-10xl xl:text-12xl my-14 font-bold  md:my-auto">
-            HI I'M DAVS
+            {allEnglish.heroText}
           </h1>
           <h1
             className=" font-black font-work
             text-6xl  md:text-9xl lg:text-10xl xl:text-12xl my-14 font-bold md:my-auto">
-            HI I'M DAVS
+            {allEnglish.heroText}
           </h1>
           <h1
             className=" font-black font-work
             text-6xl  md:text-9xl lg:text-10xl xl:text-12xl my-14 font-bold md:my-auto">
-            HI I'M DAVS
+            {allEnglish.heroText}
           </h1>
         </section>
         <section className=" font-satoshi min-h-screen flex bg-gray-900 text-white">
           <h2 className="text-[2.3em] md:text-[8vw] xl:text-[6vw] sm:leading-[1.25em] tracking-tighter font-bold mx-10 my-auto ">
-            I aim to create innovative technological solutions that not only
-            solve problems but also inspire and connect with users in a
-            meaningful way.
+            {allEnglish.myDescription}
           </h2>
         </section>
-        <section className=" font-satoshi min-h-screen flex my-auto ">
+        <section
+          id="about"
+          className=" font-satoshi min-h-screen flex my-auto ">
           <div className="flex flex-col items-start my-auto w-full">
             <div className="pt-12 md:pt0 mx-auto flex items-center">
               <img src={D} alt="" className="h-5 md:h-16 " />
               <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 ">
-                About me
+                {texts.subTitles[0]}
               </h1>
               <img src={D} alt="" className="h-5 md:h-16 rotate-180" />
             </div>
@@ -163,42 +231,32 @@ function App() {
               </div>
               <div className="w-full">
                 <p className=" text-lg sm:text-[4vw] md:text-[4vw] lg:text-4xl md:text-[1.9vw]  sm:leading-[1.25em]">
-                  Mi nombre es Davy Rodríguez y soy un apasionado desarrollador
-                  Full Stack dedicado a transformar ideas en experiencias
-                  digitales cautivadoras.
+                  {allEnglish.about[0]}
                   <br />
                   <br />
-                  Con habilidades técnicas en constante crecimiento y una mente
-                  creativa, mi objetivo es llevar cada proyecto al siguiente
-                  nivel, combinando eficiencia en el desarrollo backend con una
-                  estética cuidadosa en el frontend.
+                  {allEnglish.about[1]}
                   <br />
                   <br />
-                  Mi compromiso con el aprendizaje constante y mi perspectiva
-                  única, influenciada por mi pasión por la música, la
-                  literatura, el cine y los videojuegos, me convierten en un
-                  candidato entusiasta y adaptable. ¡Descubre cómo puedo aportar
-                  un toque distintivo a tu equipo y proyectos!
+                  {allEnglish.about[2]}
                 </p>
               </div>
             </div>
           </div>
         </section>
-        <section className=" font-satoshi min-h-screen flex my-auto">
+        <section
+          id="skills"
+          className=" font-satoshi min-h-screen flex my-auto">
           <div className="flex flex-col items-start my-auto w-full">
             <div className="pt-12 md:pt0 mx-auto flex items-center">
               <img src={D} alt="" className="h-5 md:h-16 " />
               <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 ">
-                My Skills
+                {texts.subTitles[1]}
               </h1>
               <img src={D} alt="" className="h-5 md:h-16 rotate-180" />
             </div>
             <div className="py-10 px-[2em] md:px-[12em]">
               <p className="text-lg pb-10 sm:text-[4vw] lg:text-4xl sm:leading-[1.25em]">
-                Con un arsenal de herramientas tecnológicas, estoy preparado
-                para dar vida a cualquier proyecto. Mi curiosidad constante me
-                lleva a abrazar la evolución de mis habilidades y a explorar
-                nuevas tecnologías.
+                {allEnglish.skills}
               </p>
 
               <div className="w-full grid grid-cols-3 gap-6 md:grid-cols-4">
@@ -218,22 +276,20 @@ function App() {
             </div>
           </div>
         </section>
-        <section className=" font-satoshi min-h-screen flex my-auto">
+        <section
+          id="projects"
+          className=" font-satoshi min-h-screen flex my-auto">
           <div className="flex flex-col items-start my-auto w-full">
             <div className="pt-12 md:pt0 mx-auto flex items-center">
               <img src={D} alt="" className="h-5 md:h-16 " />
               <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 ">
-                My Projects
+                {texts.subTitles[2]}
               </h1>
               <img src={D} alt="" className="h-5 md:h-16 rotate-180" />
             </div>
             <div className="py-10 px-[2em] md:px-[12em]">
               <p className="text-lg pb-10 sm:text-[4vw] lg:text-4xl sm:leading-[1.25em]">
-                En mi experiencia, priorizo calidad sobre cantidad. Cada
-                proyecto es una oportunidad para fusionar creatividad y
-                habilidades técnicas, destacando la excelencia sobre la
-                cantidad, transformando ideas en experiencias digitales
-                impactantes y duraderas.
+                {allEnglish.projects}
               </p>
             </div>
             <div className=" flex flex-col w-full justify-center items-center px-auto gap-3 md:gap-5">
@@ -257,20 +313,22 @@ function App() {
             </div>
           </div>
         </section>
-        <section className=" font-satoshi min-h-screen flex my-auto flex-col">
+        <section
+          id="contact"
+          className=" font-satoshi min-h-screen flex my-auto flex-col">
           <div className="flex flex-col items-start my-auto w-full">
             <div className="pt-12 md:pt0 mx-auto flex items-center">
               <img src={D} alt="" className="h-5 md:h-16 " />
               <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 ">
-                Contact me
+                {texts.subTitles[3]}
               </h1>
               <img src={D} alt="" className="h-5 md:h-16 rotate-180" />
             </div>
             <div className="py-10 px-[2em] mx-auto flex flex-row justify-between items-center w-full">
               <div className=" flex justify-center items-center w-full">
                 <h4 className="text-[5vw] md:text-4xl font-semibold font-microsoft text-center">
-                  ¿Tienes algún proyecto en mente? <br /> Permíteme ayudarte a
-                  darle vida <br /> y formar parte de tu equipo.
+                  {allEnglish.contact[0]} <br /> {allEnglish.contact[1]}
+                  <br /> {allEnglish.contact[2]}
                 </h4>
               </div>
             </div>
@@ -278,10 +336,10 @@ function App() {
               <div className="mt-4 flex flex-col md:flex-row gap-6">
                 <div className="flex flex-col">
                   <label className="text-black" for="name">
-                    Name
+                    {texts.form[0]}
                   </label>
                   <input
-                    placeholder="Your name"
+                    placeholder={texts.form[1]}
                     className="w-full bg-slate-100 w-[90vw] sm:w-[22rem] border border-2 border-black border-gray-700 text-black px-2 py-1"
                     type="text"
                     id="name"
@@ -289,10 +347,10 @@ function App() {
                 </div>
                 <div className="flex flex-col">
                   <label className="text-black" for="email">
-                    Email
+                    {texts.form[2]}
                   </label>
                   <input
-                    placeholder="Your email"
+                    placeholder={texts.form[3]}
                     className="w-full bg-slate-100 w-[90vw] sm:w-[22rem] border border-2 border-black border-gray-700 text-black px-2 py-1"
                     type="email"
                     id="email"
@@ -302,10 +360,10 @@ function App() {
 
               <div className="flex flex-col my-4">
                 <label className="text-black" for="message">
-                  Message
+                  {texts.form[4]}
                 </label>
                 <textarea
-                  placeholder="Your message"
+                  placeholder={texts.form[5]}
                   className="w-full bg-slate-100 border border-2 border-black min-h-[140px] border-gray-700 text-black px-2 py-1"
                   id="message"></textarea>
               </div>
@@ -314,7 +372,7 @@ function App() {
                 <button
                   className=" text-black border border-black border-2 px-4 py-1 hover:bg-black hover:text-white transition-all duration-200"
                   type="submit">
-                  Submit
+                  {texts.form[6]}
                 </button>
               </div>
             </div>
@@ -339,7 +397,7 @@ function App() {
           </div>
         </section>
       </main>
-    </>
+    </HashRouter>
   );
 }
 
