@@ -166,8 +166,10 @@ function App() {
       { opacity: 1, y: 0, duration: 1 },
       "-=1"
     ); 
+    tl.from(".header-text", { opacity: 0, y:
+    100, duration: 1 }, "-=1")
+      
 
- 
     return () => {
       tl.kill();
     };
@@ -209,7 +211,7 @@ function App() {
         <section className="min-h-[100vh]  flex flex-col text-center  justify-center">
           <div>
             <h1
-              className=" text-gray-900 font-work
+              className="header-text text-gray-900 font-work
             text-8xl  md:text-10xl lg:text-12xl xl:text-[16rem] my-14 font-bold  md:my-auto uppercase">
               {allEnglish.heroText[0]}
               <br />
