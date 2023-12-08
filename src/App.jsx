@@ -85,11 +85,14 @@ function App() {
       <main className="min-h-screen font-satoshi w-screen flex flex-col bg-slate-100">
         <header className="fixed px-4 z-10 bg-slate-100 text-dark h-20 w-full md:block">
           <div className="container mx-auto flex items-center justify-between h-full">
-            <a
-              href=""
-              className="a-logo flex items-center justify-center border border-2  border-black p-1 hover:bg-black">
-              <img src={logo} alt="" className=" w-10 " />
-            </a>
+            <div>
+              <a href="" className="flex justify-center items-start gap-2">
+                <h2 className="text-6xl font-work font-bold">DAVS</h2>
+                <span className="a-logo flex items-center justify-center border border-2 h-8 w-8 border-black p-1 hover:bg-black">
+                  <img src={logo} alt="" className=" w-10 " />
+                </span>
+              </a>
+            </div>
             <div className="text-center flex justify-evenly gap-x-4 ">
               <nav className="contents font-semibold text-base hidden lg:text-lg lg:flex ">
                 <ul className="mx-auto flex items-center">
@@ -186,7 +189,7 @@ function App() {
             <div className="pt-12 md:pt0 mx-auto flex items-center">
               <img src={D} alt="" className="h-5 md:h-16 " />
               <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 ">
-                Skills
+                My Skills
               </h1>
               <img src={D} alt="" className="h-5 md:h-16 rotate-180" />
             </div>
@@ -220,7 +223,7 @@ function App() {
             <div className="pt-12 md:pt0 mx-auto flex items-center">
               <img src={D} alt="" className="h-5 md:h-16 " />
               <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 ">
-                Projects
+                My Projects
               </h1>
               <img src={D} alt="" className="h-5 md:h-16 rotate-180" />
             </div>
@@ -267,11 +270,11 @@ function App() {
               <div className=" flex justify-center items-center w-full">
                 <h4 className="text-[5vw] md:text-4xl font-semibold font-microsoft text-center">
                   ¿Tienes algún proyecto en mente? <br /> Permíteme ayudarte a
-                  darle vida.
+                  darle vida <br /> y formar parte de tu equipo.
                 </h4>
               </div>
             </div>
-            <div className="mt-4 flex flex-col mx-auto p-4 ">
+            <div className="mt-4 flex flex-col mx-auto ">
               <div className="mt-4 flex flex-col md:flex-row gap-6">
                 <div className="flex flex-col">
                   <label className="text-black" for="name">
@@ -279,7 +282,7 @@ function App() {
                   </label>
                   <input
                     placeholder="Your name"
-                    className="w-full bg-slate-100 w-[20rem] border border-2 border-black border-gray-700 text-black px-2 py-1"
+                    className="w-full bg-slate-100 w-[90vw] sm:w-[22rem] border border-2 border-black border-gray-700 text-black px-2 py-1"
                     type="text"
                     id="name"
                   />
@@ -290,7 +293,7 @@ function App() {
                   </label>
                   <input
                     placeholder="Your email"
-                    className="w-full bg-slate-100 w-[20rem] border border-2 border-black border-gray-700 text-black px-2 py-1"
+                    className="w-full bg-slate-100 w-[90vw] sm:w-[22rem] border border-2 border-black border-gray-700 text-black px-2 py-1"
                     type="email"
                     id="email"
                   />
@@ -316,17 +319,17 @@ function App() {
               </div>
             </div>
           </div>
-          <div className="w-full flex flex-col gap-6 px-10 pb-5 md:flex-row justify-between items-start md:items-center">
+          <div className=" text-2xl w-full flex flex-col gap-6 px-10 pb-5 md:flex-row justify-between items-start md:items-center font-satoshi">
             <h4>© 2023 Davy Rodríguez</h4>
             <ul className="flex gap-[3em]">
               <li>
-                <a href="" className="text-2xl  font-satoshi ">
+                <a href="" className="font-satoshi flex items-center gap-2">
                   <iconify-icon icon="line-md:github-loop"></iconify-icon>
                   Github
                 </a>
               </li>
               <li>
-                <a href="" className="text-2xl  font-satoshi ">
+                <a href="" className="font-satoshi flex items-center gap-2">
                   <iconify-icon icon="line-md:linkedin"></iconify-icon>
                   Linkedin
                 </a>
