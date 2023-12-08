@@ -1,0 +1,16 @@
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+.a-logo:hover img {
+  filter: invert(100%);
+}
+
+.containez {
+  width: 80%; /* Puedes ajustar el ancho del contenedor según tus necesidades */
+  margin: 0 auto; /* Centra el contenedor en la página */
+}
+
+.containez h1 {
+  font-size: 5vw; /* El tamaño de fuente es el 5% del ancho del viewport */
+}
