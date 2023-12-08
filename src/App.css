@@ -14,3 +14,16 @@ body {
 .containez h1 {
   font-size: 5vw; /* El tamaño de fuente es el 5% del ancho del viewport */
 }
+
+.cursor-follow {
+  background-image: url("./img/DAVS-PICTURE-1.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 300px;
+  mix-blend-mode: difference;
+  height: 400px;
+  z-index: 2;
+  user-select: none;
+  pointer-events: none;
+  transform: translate(5px, 5px);
+}

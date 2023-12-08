@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "./img/DAVS-logo.png";
 import D from "./img/D.png";
 import heztorMockup from "./img/mockup-heztor.jpg";
 import davsPicture from "./img/DAVS-PICTURE-1.jpg";
-import { HashRouter, Link } from "react-router-dom";
-
+import { HashRouter } from "react-router-dom";
+import { gsap } from "gsap";
 import "./App.css";
 
 function App() {
@@ -84,7 +84,7 @@ function App() {
   const allEnglish = !changeLanguage
     ? {
         navbar: ["About", "Skills", "Projects", "Contact"],
-        heroText: "HI, I'M DAVS",
+        heroText: ["Hi,", "I'm", "Davs"],
         myDescription: `I aim to create innovative technological solutions that not only
     solve problems but also inspire and connect with users in a
     meaningful way.`,
@@ -105,7 +105,7 @@ function App() {
       }
     : {
         navbar: ["Sobre", "Habilidades", "Proyectos", "Contacto"],
-        heroText: "HOLA, SOY DAVS",
+        heroText: ["Hola,", "Soy", "Davs"],
         myDescription: `Busco crear soluciones tecnológicas innovadoras que no solo resuelvan problemas, sino que también inspiren y conecten con los usuarios de manera significativa.`,
         about: [
           "Mi nombre es Davy Rodríguez y soy un apasionado desarrollador web dedicado a transformar ideas en experiencias digitales cautivadoras.",
@@ -158,13 +158,27 @@ function App() {
 
   const links = ["about", "skills", "projects", "contact"];
 
+  const tl = gsap.timeline();
+
+  useEffect(() => {
+    tl.from(".header", { opacity: 0, y: 100, duration: 1 }).to(
+      ".header",
+      { opacity: 1, y: 0, duration: 1 },
+      "-=1"
+    ); 
+
+ 
+    return () => {
+      tl.kill();
+    };
+  }, [tl]);
+
   return (
     <HashRouter>
       <main className="min-h-screen font-satoshi w-screen flex flex-col bg-slate-100">
-        <header className="fixed px-4 z-10 bg-slate-100 text-dark h-20 w-full md:block">
+        <header className="header fixed px-4 z-10 bg-slate-100 text-dark h-20 w-full md:block">
           <div className="container mx-auto flex items-center justify-between h-full">
             <div>
-              <link></link>
               <a href="#" className="flex justify-center items-start gap-2">
                 <h2 className="text-6xl font-work font-bold">DAVS</h2>
                 <span className="a-logo flex items-center justify-center border border-2 h-8 w-8 border-black p-1 hover:bg-black">
@@ -173,10 +187,10 @@ function App() {
               </a>
             </div>
             <div className="text-center flex justify-evenly gap-x-4 ">
-              <nav className="contents font-semibold text-base hidden lg:text-lg lg:flex ">
-                <ul className="mx-auto flex items-center">
+              <nav className=" contents font-semibold text-base hidden lg:text-lg lg:flex ">
+                <ul className="  mx-auto flex items-center">
                   {texts.options.map((option, index) => (
-                    <li key={index} className="p-5 xl:p-8">
+                    <li key={index} className="nav-item p-5 xl:p-8">
                       <a href={`#${links[index]}`} className="hover:text-black">
                         <span>{option}</span>
                       </a>
@@ -192,22 +206,18 @@ function App() {
             </div>
           </div>
         </header>
-        <section className=" min-h-screen flex flex-col text-center  justify-center">
-          <h1
-            className=" font-black font-work
-            text-6xl  md:text-9xl lg:text-10xl xl:text-12xl my-14 font-bold  md:my-auto">
-            {allEnglish.heroText}
-          </h1>
-          <h1
-            className=" font-black font-work
-            text-6xl  md:text-9xl lg:text-10xl xl:text-12xl my-14 font-bold md:my-auto">
-            {allEnglish.heroText}
-          </h1>
-          <h1
-            className=" font-black font-work
-            text-6xl  md:text-9xl lg:text-10xl xl:text-12xl my-14 font-bold md:my-auto">
-            {allEnglish.heroText}
-          </h1>
+        <section className="min-h-[100vh]  flex flex-col text-center  justify-center">
+          <div>
+            <h1
+              className=" text-gray-900 font-work
+            text-8xl  md:text-10xl lg:text-12xl xl:text-[16rem] my-14 font-bold  md:my-auto uppercase">
+              {allEnglish.heroText[0]}
+              <br />
+              {allEnglish.heroText[1]}
+              <br />
+              {allEnglish.heroText[2]}
+            </h1>
+          </div>
         </section>
         <section className=" font-satoshi min-h-screen flex bg-gray-900 text-white">
           <h2 className="text-[2.3em] md:text-[8vw] xl:text-[6vw] sm:leading-[1.25em] tracking-tighter font-bold mx-10 my-auto ">

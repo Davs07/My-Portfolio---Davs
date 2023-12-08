@@ -12,6 +12,7 @@ export default {
       fontSize: {
         "12xl": "12rem",
         "10xl": "10rem",
+        "15xl": "15rem"
       },
     },
   },
