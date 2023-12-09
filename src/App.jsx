@@ -254,11 +254,11 @@ const App = () => {
           data-textcolor="#070707">
           <div className="flex flex-col items-start my-auto w-full">
             <div className="pt-12 md:pt0 mx-auto flex items-center">
-              <img src={D} alt="" className="h-5 md:h-16 " />
-              <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 text-center">
+              <img src={D} alt="" className="h-[1.2em] sm:h-[2.2em] lg:h-[3.2em]  " />
+              <h1 className="text-[2.3em] sm:text-[5em] lg:text-[9em] tracking-normal font-melodrama font-bold mx-4 text-center">
                 {texts.subTitles[0]}
               </h1>
-              <img src={D} alt="" className="h-5 md:h-16 rotate-180" />
+              <img src={D} alt="" className="h-[1.2em] sm:h-[2.2em] lg:h-[3.2em]  rotate-180" />
             </div>
             <div className="py-10  px-[2em] flex flex-col lg:flex-row items-center justify-center">
               <div className="w-full flex items-center justify-center pb-8">
@@ -285,11 +285,11 @@ const App = () => {
           data-textcolor="#070707">
           <div className="flex flex-col items-start my-auto w-full">
             <div className="pt-12 md:pt0 mx-auto flex items-center">
-              <img src={D} alt="" className="h-5 md:h-16 " />
-              <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 text-center">
+              <img src={D} alt="" className="h-[1.2em] sm:h-[2.2em] lg:h-[3.2em]  " />
+              <h1 className="text-[2.3em] sm:text-[5em] lg:text-[9em]  tracking-normal font-melodrama font-bold mx-4 text-center">
                 {texts.subTitles[1]}
               </h1>
-              <img src={D} alt="" className="h-5 md:h-16 rotate-180" />
+              <img src={D} alt="" className="h-[1.2em] sm:h-[2.2em] lg:h-[3.2em]  rotate-180" />
             </div>
             <div className="py-10 px-[2em] md:px-[4em] text-start">
               <p className="text-lg pb-10 sm:text-[4vw] lg:text-4xl sm:leading-[1.25em] text-start">
@@ -320,11 +320,11 @@ const App = () => {
           data-textcolor="#F1F5F9">
           <div className="flex flex-col items-start my-auto w-full">
             <div className="pt-12 md:pt0 mx-auto flex items-center">
-              <img src={D} alt="" className="h-5 md:h-16 " />
-              <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 text-center">
+              <img src={D} alt="" className="h-[1.2em] sm:h-[2.2em] lg:h-[3.2em]  " />
+              <h1 className="text-[2.3em] sm:text-[5em] lg:text-[9em] tracking-normal font-melodrama font-bold mx-4 text-center">
                 {texts.subTitles[2]}
               </h1>
-              <img src={D} alt="" className="h-5 md:h-16 rotate-180" />
+              <img src={D} alt="" className="h-[1.2em] sm:h-[2.2em] lg:h-[3.2em]  rotate-180" />
             </div>
             <div className="py-10 px-[2em] md:px-[4em]">
               <p className="text-lg pb-10 sm:text-[4vw] lg:text-4xl sm:leading-[1.25em] text-start">
@@ -359,11 +359,11 @@ const App = () => {
           data-textcolor="#070707">
           <div className="flex flex-col items-start my-auto w-full">
             <div className="pt-12 md:pt0 mx-auto flex items-center">
-              <img src={D} alt="" className="h-5 md:h-16 " />
-              <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 text-center">
+              <img src={D} alt="" className="h-[1.2em] sm:h-[2.2em] lg:h-[3.2em]  " />
+              <h1 className="text-[2.3em] sm:text-[5em] lg:text-[9em] tracking-normal font-melodrama font-bold mx-4 text-center">
                 {texts.subTitles[3]}
               </h1>
-              <img src={D} alt="" className="h-5 md:h-16 rotate-180" />
+              <img src={D} alt="" className="h-[1.2em] sm:h-[2.2em] lg:h-[3.2em]  rotate-180" />
             </div>
             <div className="py-10 px-[2em] mx-auto flex flex-row justify-between items-center w-full">
               <div className=" flex justify-center items-center w-full">
