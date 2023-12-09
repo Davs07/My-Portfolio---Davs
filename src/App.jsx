@@ -334,10 +334,10 @@ const App = () => {
             <div className=" flex flex-col w-full justify-center items-center px-auto gap-3 md:gap-5">
               <img src={heztorMockup} alt="" className="w-[80vw]" />
               <div className="flex justify-start gap-4 md:gap-10 w-full px-[10vw]  h-8 md:h-12">
-                <span className="border  border-2 flex items-center border-black px-4  text-base md:text-3xl">
+                <span className="border  border-2 flex items-center border-current px-4  text-base md:text-3xl">
                   2023
                 </span>
-                <span className="border border-2 flex items-center gap-3 border-black px-4  text-base md:text-3xl">
+                <span className="border border-2 flex items-center gap-3 border-current px-4  text-base md:text-3xl">
                   <i className="devicon-react-original"></i> •{" "}
                   <i className="devicon-sass-original"></i> •{" "}
                   <i className="devicon-spring-plain"></i> •{" "}
@@ -381,7 +381,7 @@ const App = () => {
                   </label>
                   <input
                     placeholder={texts.form[1]}
-                    className="w-full bg-slate-100 w-[90vw] sm:w-[22rem] border border-2 border-black border-gray-700 text-black px-2 py-1"
+                    className="w-full bg-slate-100 w-[90vw] sm:w-[22rem] border border-2 bg-transparent border-black border-gray-700 text-black px-2 py-1"
                     type="text"
                     id="name"
                   />
@@ -392,7 +392,7 @@ const App = () => {
                   </label>
                   <input
                     placeholder={texts.form[3]}
-                    className="w-full bg-slate-100 w-[90vw] sm:w-[22rem] border border-2 border-black border-gray-700 text-black px-2 py-1"
+                    className="w-full bg-slate-100 w-[90vw] sm:w-[22rem] border border-2 bg-transparent border-black border-gray-700 text-black px-2 py-1"
                     type="email"
                     id="email"
                   />
@@ -405,7 +405,7 @@ const App = () => {
                 </label>
                 <textarea
                   placeholder={texts.form[5]}
-                  className="w-full bg-slate-100 border border-2 border-black min-h-[140px] border-gray-700 text-black px-2 py-1"
+                  className="w-full bg-slate-100 border border-2 bg-transparent border-black min-h-[140px] border-gray-700 text-black px-2 py-1"
                   id="message"></textarea>
               </div>
 
