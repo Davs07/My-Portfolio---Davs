@@ -1,17 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import logo from "./img/DAVS-logo.png";
 import D from "./img/D.png";
 import heztorMockup from "./img/mockup-heztor.jpg";
 import davsPicture from "./img/DAVS-PICTURE-1.jpg";
 import { HashRouter } from "react-router-dom";
-import { gsap } from "gsap";
 import "./App.css";
+import { useTexts } from "./services/useTexts";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import Scrollbar from "smooth-scrollbar";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function App() {
-  const [changeLanguage, setChangeLanguage] = useState(false);
-  const handleChangeLanguage = () => {
-    setChangeLanguage(!changeLanguage);
-  };
+  const { allEnglish, texts, links, handleChangeLanguage, changeLanguage } =
+    useTexts();
+
   const skills = [
     {
       id: 1,
@@ -81,143 +85,81 @@ function App() {
     },
   ];
 
-  const allEnglish = !changeLanguage
-    ? {
-        navbar: ["About", "Skills", "Projects", "Contact"],
-        heroText: ["Hi,", "I'm", "Davs"],
-        myDescription: `I aim to create innovative technological solutions that not only
-    solve problems but also inspire and connect with users in a
-    meaningful way.`,
-        about: [
-          "My name is Davy Rodríguez, and I am a passionate web developer dedicated to transforming ideas into captivating digital experiences.",
-          "With continually growing technical skills and a creative mindset, my goal is to take each project to the next level by combining efficiency in backend development with meticulous aesthetics in the frontend.",
-          "My commitment to constant learning and my unique perspective, influenced by my passion for music, literature, film, and video games, make me an enthusiastic and adaptable candidate. Discover how I can bring a distinctive touch to your team and projects!",
-        ],
-        skills:
-          "With an arsenal of technological tools, I am prepared to breathe life into any project. My constant curiosity drives me to refine my skills and explore new technologies.",
-        projects:
-          "In my experience, I prioritize quality over quantity. Each project is an opportunity to blend creativity and technical skills, emphasizing excellence over quantity, transforming ideas into impactful and enduring digital experiences.",
-        contact: [
-          "Do you have a project in mind?",
-          "Allow me to help bring it to life",
-          "and become a valuable part of your team.",
-        ],
-      }
-    : {
-        navbar: ["Sobre", "Habilidades", "Proyectos", "Contacto"],
-        heroText: ["Hola,", "Soy", "Davs"],
-        myDescription: `Busco crear soluciones tecnológicas innovadoras que no solo resuelvan problemas, sino que también inspiren y conecten con los usuarios de manera significativa.`,
-        about: [
-          "Mi nombre es Davy Rodríguez y soy un apasionado desarrollador web dedicado a transformar ideas en experiencias digitales cautivadoras.",
-          "Con habilidades técnicas en constante crecimiento y una mente creativa, mi objetivo es llevar cada proyecto al siguiente nivel, combinando eficiencia en el desarrollo backend con una estética cuidadosa en el frontend.",
-          "Mi compromiso con el aprendizaje constante y mi perspectiva única, influenciada por mi pasión por la música, la literatura, el cine y los videojuegos, me convierten en un candidato entusiasta y adaptable. ¡Descubre cómo puedo aportar un toque distintivo a tu equipo y proyectos!",
-        ],
-        skills:
-          "Con un arsenal tecnológico, estoy preparado para dar vida a cualquier proyecto. Mi curiosidad constante me impulsa a perfeccionar habilidades y explorar nuevas tecnologías.",
-        projects:
-          "En mi experiencia, priorizo calidad sobre cantidad. Cada proyecto es una oportunidad para fusionar creatividad y habilidades técnicas, destacando la excelencia sobre la cantidad, transformando ideas en experiencias digitales impactantes y duraderas.",
-        contact: [
-          "¿Tienes algún proyecto en mente?",
-          "Permíteme ayudarte a darle vida",
-          "y formar parte de tu equipo.",
-        ],
-      };
+  const comp = useRef(null);
 
-  const texts = !changeLanguage
-    ? {
-        options: ["About", "Skills", "Projects", "Contact"],
-        subTitles: ["About me", "My skills", "My projects", "Contact me"],
-        form: [
-          "Name",
-          "Your name",
-          "Email",
-          "Your email",
-          "Message",
-          "Your message",
-          "Submit",
-        ],
-      }
-    : {
-        options: ["Sobre", "Habilidades", "Proyectos", "Contacto"],
-        subTitles: [
-          "Sobre mí",
-          "Mis habilidades",
-          "Mis proyectos",
-          "Contáctame",
-        ],
-        form: [
-          "Nombre",
-          "Tu nombre",
-          "Email",
-          "Tu email",
-          "Mensaje",
-          "Tu mensaje",
-          "Enviar",
-        ],
-      };
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline();
 
-  const links = ["about", "skills", "projects", "contact"];
-
-  const tl = gsap.timeline();
-
-  useEffect(() => {
-    tl.from(".header", { opacity: 0, y: 100, duration: 1 }).to(
-      ".header",
-      { opacity: 1, y: 0, duration: 1 },
-      "-=1"
-    ); 
-    tl.from(".header-text", { opacity: 0, y:
-    100, duration: 1 }, "-=1")
-      
-
-    return () => {
-      tl.kill();
-    };
-  }, [tl]);
+      tl.from(".header", { opacity: 0, x: -100, duration: 1.5 }).to(
+        ".header",
+        { opacity: 1, x: 0, duration: 1.5 },
+        "-=1"
+      );
+      tl.from(
+        "#hero-text-1",
+        { opacity: 0, y: 100, x: 50, duration: 2, delay: 0.1 },
+        "-=1"
+      )
+        .from(
+          "#hero-text-2",
+          { opacity: 0, y: 100, x: 50, duration: 2, delay: 0.2 },
+          "-=1"
+        )
+        .from(
+          "#hero-text-3",
+          { opacity: 0, y: 100, x: 50, duration: 2, delay: 0.3 },
+          "-=1"
+        );
+    });
+    return () => ctx.revert();
+  }, []);
 
   return (
     <HashRouter>
-      <main className="min-h-screen font-satoshi w-screen flex flex-col bg-slate-100">
-        <header className="header fixed px-4 z-10 bg-slate-100 text-dark h-20 w-full md:block">
-          <div className="container mx-auto flex items-center justify-between h-full">
-            <div>
-              <a href="#" className="flex justify-center items-start gap-2">
-                <h2 className="text-6xl font-work font-bold">DAVS</h2>
-                <span className="a-logo flex items-center justify-center border border-2 h-8 w-8 border-black p-1 hover:bg-black">
-                  <img src={logo} alt="" className=" w-10 " />
-                </span>
-              </a>
-            </div>
-            <div className="text-center flex justify-evenly gap-x-4 ">
-              <nav className=" contents font-semibold text-base hidden lg:text-lg lg:flex ">
-                <ul className="  mx-auto flex items-center">
-                  {texts.options.map((option, index) => (
-                    <li key={index} className="nav-item p-5 xl:p-8">
-                      <a href={`#${links[index]}`} className="hover:text-black">
-                        <span>{option}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-              <button
-                className="border border-2 flex  items-center border-black font-bold  p-1 my-auto place-items-center hover:bg-black hover:text-white"
-                onClick={handleChangeLanguage}>
-                {!changeLanguage ? "Español" : "English"}
-              </button>
-            </div>
+      <header className=" fixed px-4 z-10 bg-transparent text-dark h-16 w-full md:block">
+        <div className="header container mx-auto flex items-center justify-between h-full">
+          <div>
+            <a href="#" className="flex justify-center items-start gap-2">
+              <h2 className="text-4xl font-work font-bold">DAVS</h2>
+              <span className="a-logo flex items-center justify-center border border-2 h-6 w-6 border-black p-1 hover:bg-black">
+                <img src={logo} alt="" className=" w-full" />
+              </span>
+            </a>
           </div>
-        </header>
+          <div className="text-center flex justify-evenly gap-x-4 ">
+            <nav className=" contents font-semibold text-base hidden lg:text-lg lg:flex ">
+              <ul className="  mx-auto flex items-center">
+                {texts.options.map((option, index) => (
+                  <li key={index} className="nav-item p-5 xl:p-8">
+                    <a href={`#${links[index]}`} className="hover:text-black">
+                      <span>{option}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <button
+              className="border border-2 flex  items-center border-black font-bold  p-1 my-auto place-items-center hover:bg-black hover:text-white"
+              onClick={handleChangeLanguage}>
+              {!changeLanguage ? "Español" : "English"}
+            </button>
+          </div>
+        </div>
+      </header>
+      <main
+        ref={comp}
+        className="main min-h-screen font-satoshi w-screen flex flex-col bg-slate-100">
         <section className="min-h-[100vh]  flex flex-col text-center  justify-center">
           <div>
             <h1
-              className="header-text text-gray-900 font-work
+              className="hero-text text-gray-900 font-work
             text-8xl  md:text-10xl lg:text-12xl xl:text-[16rem] my-14 font-bold  md:my-auto uppercase">
-              {allEnglish.heroText[0]}
+              <span id="hero-text-1">{allEnglish.heroText[0]}</span>
               <br />
-              {allEnglish.heroText[1]}
+              <span id="hero-text-2">{allEnglish.heroText[1]}</span>
               <br />
-              {allEnglish.heroText[2]}
+              <span id="hero-text-3">{allEnglish.heroText[2]}</span>
             </h1>
           </div>
         </section>
@@ -290,7 +232,7 @@ function App() {
         </section>
         <section
           id="projects"
-          className=" font-satoshi min-h-screen flex my-auto">
+          className=" font-satoshi min-h-screen flex my-auto bg-gray-900 text-white">
           <div className="flex flex-col items-start my-auto w-full">
             <div className="pt-12 md:pt0 mx-auto flex items-center">
               <img src={D} alt="" className="h-5 md:h-16 " />
