@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef} from "react";
 import logo from "./img/DAVS-logo.png";
 import D from "./img/D.png";
 import heztorMockup from "./img/mockup-heztor.jpg";
@@ -12,7 +12,79 @@ import Scrollbar from "smooth-scrollbar";
 
 gsap.registerPlugin(ScrollTrigger);
 
-function App() {
+const App = () => {
+  useEffect(() => {
+    const scrollBar = Scrollbar.init(document.querySelector(".main"), {
+      damping: 0.06,
+      delegateTo: document,
+      alwaysShowTracks: false,
+      speed: 3,
+    });
+
+    ScrollTrigger.defaults({
+      scroller: ".main",
+    });
+
+    ScrollTrigger.scrollerProxy(".main", {
+      scrollTop(value) {
+        if (arguments.length) {
+          scrollBar.scrollTop = value;
+        }
+        return scrollBar.scrollTop;
+      },
+    });
+
+    scrollBar.addListener(ScrollTrigger.update);
+
+    const changeHeaderStyles = (backgroundColor, textColor) => {
+      gsap.to("header", {
+        backgroundColor: backgroundColor,
+        color: textColor,
+        duration: 0.5,
+      });
+    };
+
+    const sectionColor = document.querySelectorAll("[data-bgcolor]");
+    sectionColor.forEach((colorSection, i) => {
+      const prevBgColor = i === 0 ? "" : sectionColor[i - 1].dataset.bgcolor;
+      const prevTextColor =
+        i === 0 ? "" : sectionColor[i - 1].dataset.textcolor;
+      const textColor = colorSection.dataset.textcolor;
+
+      ScrollTrigger.create({
+        trigger: colorSection,
+        scroller: ".main",
+        start: "top 50%",
+        onEnter: () => {
+          const bgColor = colorSection.dataset.bgcolor;
+          gsap.to(".main", {
+            backgroundColor: bgColor,
+            color: textColor,
+            overwrite: "auto",
+          });
+          changeHeaderStyles(bgColor, textColor);
+        },
+        onLeaveBack: () => {
+          gsap.to(".main", {
+            backgroundColor: prevBgColor,
+            color: prevTextColor,
+            overwrite: "auto",
+          });
+          changeHeaderStyles(prevBgColor, prevTextColor);
+        },
+      });
+    });
+
+    const changeHeaderTextColor = (color) => {
+      gsap.to("header", {
+        color: color,
+        duration: 0.5,
+      });
+    };
+
+    return () => {};
+  }, []);
+
   const { allEnglish, texts, links, handleChangeLanguage, changeLanguage } =
     useTexts();
 
@@ -117,12 +189,12 @@ function App() {
 
   return (
     <HashRouter>
-      <header className=" fixed px-4 z-10 bg-transparent text-dark h-16 w-full md:block">
+      <header className="fixed px-4 z-10 text-dark h-16 w-full md:block">
         <div className="header container mx-auto flex items-center justify-between h-full">
           <div>
             <a href="#" className="flex justify-center items-start gap-2">
               <h2 className="text-4xl font-work font-bold">DAVS</h2>
-              <span className="a-logo flex items-center justify-center border border-2 h-6 w-6 border-black p-1 hover:bg-black">
+              <span className="a-logo flex items-center justify-center border border-2 h-6 w-6 border-black p-1 hover:bg-black bg-[#F1F5F9]">
                 <img src={logo} alt="" className=" w-full" />
               </span>
             </a>
@@ -140,7 +212,7 @@ function App() {
               </ul>
             </nav>
             <button
-              className="border border-2 flex  items-center border-black font-bold  p-1 my-auto place-items-center hover:bg-black hover:text-white"
+              className="language border border-2 flex  items-center border-current font-bold  p-1 my-auto place-items-center  "
               onClick={handleChangeLanguage}>
               {!changeLanguage ? "Español" : "English"}
             </button>
@@ -149,12 +221,16 @@ function App() {
       </header>
       <main
         ref={comp}
-        className="main min-h-screen font-satoshi w-screen flex flex-col bg-slate-100">
-        <section className="min-h-[100vh]  flex flex-col text-center  justify-center">
+        className="main h-screen font-satoshi w-full flex flex-col  min-h-screen">
+        <section
+          id="hero"
+          className="min-h-screen w-screen relative flex items-center justify-center px-32"
+          data-bgcolor="#F1F5F9"
+          data-textcolor="#070707">
           <div>
             <h1
-              className="hero-text text-gray-900 font-work
-            text-8xl  md:text-10xl lg:text-12xl xl:text-[16rem] my-14 font-bold  md:my-auto uppercase">
+              className="hero-text  font-work
+            text-8xl  md:text-10xl lg:text-12xl xl:text-[16rem] my-14 font-bold  md:my-auto uppercase text-center">
               <span id="hero-text-1">{allEnglish.heroText[0]}</span>
               <br />
               <span id="hero-text-2">{allEnglish.heroText[1]}</span>
@@ -163,18 +239,23 @@ function App() {
             </h1>
           </div>
         </section>
-        <section className=" font-satoshi min-h-screen flex bg-gray-900 text-white">
-          <h2 className="text-[2.3em] md:text-[8vw] xl:text-[6vw] sm:leading-[1.25em] tracking-tighter font-bold mx-10 my-auto ">
+        <section
+          className="min-h-screen flex"
+          data-bgcolor="#070707"
+          data-textcolor="#F1F5F9">
+          <h2 className="text-[2.3em] md:text-[8vw] xl:text-[6vw] sm:leading-[1.25em] tracking-tighter font-bold mx-10 my-auto text-start">
             {allEnglish.myDescription}
           </h2>
         </section>
         <section
           id="about"
-          className=" font-satoshi min-h-screen flex my-auto ">
+          className="min-h-screen w-screen flex my-auto"
+          data-bgcolor="#F1F5F9"
+          data-textcolor="#070707">
           <div className="flex flex-col items-start my-auto w-full">
             <div className="pt-12 md:pt0 mx-auto flex items-center">
               <img src={D} alt="" className="h-5 md:h-16 " />
-              <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 ">
+              <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 text-center">
                 {texts.subTitles[0]}
               </h1>
               <img src={D} alt="" className="h-5 md:h-16 rotate-180" />
@@ -183,8 +264,8 @@ function App() {
               <div className="w-full flex items-center justify-center pb-8">
                 <img src={davsPicture} alt="" />
               </div>
-              <div className="w-full">
-                <p className=" text-lg sm:text-[4vw] md:text-[4vw] lg:text-4xl md:text-[1.9vw]  sm:leading-[1.25em]">
+              <div className="w-full py-10  md:px-[3em] text-start">
+                <p className=" text-lg pb-10 sm:text-[4vw] lg:text-4xl sm:leading-[1.25em] text-start">
                   {allEnglish.about[0]}
                   <br />
                   <br />
@@ -199,17 +280,19 @@ function App() {
         </section>
         <section
           id="skills"
-          className=" font-satoshi min-h-screen flex my-auto">
+          className="min-h-screen  flex my-auto "
+          data-bgcolor="#F1F5F9"
+          data-textcolor="#070707">
           <div className="flex flex-col items-start my-auto w-full">
             <div className="pt-12 md:pt0 mx-auto flex items-center">
               <img src={D} alt="" className="h-5 md:h-16 " />
-              <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 ">
+              <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 text-center">
                 {texts.subTitles[1]}
               </h1>
               <img src={D} alt="" className="h-5 md:h-16 rotate-180" />
             </div>
-            <div className="py-10 px-[2em] md:px-[12em]">
-              <p className="text-lg pb-10 sm:text-[4vw] lg:text-4xl sm:leading-[1.25em]">
+            <div className="py-10 px-[2em] md:px-[4em] text-start">
+              <p className="text-lg pb-10 sm:text-[4vw] lg:text-4xl sm:leading-[1.25em] text-start">
                 {allEnglish.skills}
               </p>
 
@@ -232,17 +315,19 @@ function App() {
         </section>
         <section
           id="projects"
-          className=" font-satoshi min-h-screen flex my-auto bg-gray-900 text-white">
+          className="min-h-screen w-screen relative flex my-auto"
+          data-bgcolor="#070707"
+          data-textcolor="#F1F5F9">
           <div className="flex flex-col items-start my-auto w-full">
             <div className="pt-12 md:pt0 mx-auto flex items-center">
               <img src={D} alt="" className="h-5 md:h-16 " />
-              <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 ">
+              <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 text-center">
                 {texts.subTitles[2]}
               </h1>
               <img src={D} alt="" className="h-5 md:h-16 rotate-180" />
             </div>
-            <div className="py-10 px-[2em] md:px-[12em]">
-              <p className="text-lg pb-10 sm:text-[4vw] lg:text-4xl sm:leading-[1.25em]">
+            <div className="py-10 px-[2em] md:px-[4em]">
+              <p className="text-lg pb-10 sm:text-[4vw] lg:text-4xl sm:leading-[1.25em] text-start">
                 {allEnglish.projects}
               </p>
             </div>
@@ -269,11 +354,13 @@ function App() {
         </section>
         <section
           id="contact"
-          className=" font-satoshi min-h-screen flex my-auto flex-col">
+          className="min-h-screen flex my-auto flex-col"
+          data-bgcolor="#F1F5F9"
+          data-textcolor="#070707">
           <div className="flex flex-col items-start my-auto w-full">
             <div className="pt-12 md:pt0 mx-auto flex items-center">
               <img src={D} alt="" className="h-5 md:h-16 " />
-              <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 ">
+              <h1 className="text-5xl md:text-9xl tracking-normal font-melodrama font-bold mx-4 text-center">
                 {texts.subTitles[3]}
               </h1>
               <img src={D} alt="" className="h-5 md:h-16 rotate-180" />
@@ -289,7 +376,7 @@ function App() {
             <div className="mt-4 flex flex-col mx-auto ">
               <div className="mt-4 flex flex-col md:flex-row gap-6">
                 <div className="flex flex-col">
-                  <label className="text-black" for="name">
+                  <label className="text-black" htmlFor="name">
                     {texts.form[0]}
                   </label>
                   <input
@@ -300,7 +387,7 @@ function App() {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <label className="text-black" for="email">
+                  <label className="text-black" htmlFor="email">
                     {texts.form[2]}
                   </label>
                   <input
@@ -313,7 +400,7 @@ function App() {
               </div>
 
               <div className="flex flex-col my-4">
-                <label className="text-black" for="message">
+                <label className="text-black" htmlFor="message">
                   {texts.form[4]}
                 </label>
                 <textarea
@@ -353,6 +440,6 @@ function App() {
       </main>
     </HashRouter>
   );
-}
+};
 
 export default App;
