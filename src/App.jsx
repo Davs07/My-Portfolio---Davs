@@ -220,7 +220,7 @@ const App = () => {
             <button
               className="language border border-2 flex  items-center border-current font-bold  p-1 my-auto place-items-center  "
               onClick={handleChangeLanguage}>
-              {!changeLanguage ? "Español" : "English"}
+              {!changeLanguage ? "ES" : "EN"}
             </button>
           </div>
         </div>
