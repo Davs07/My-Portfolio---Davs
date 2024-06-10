@@ -114,6 +114,18 @@ const App = () => {
       link: "https://reactjs.org/",
     },
     {
+      id: 13,
+      name: "NestJS",
+      icon: <i class="devicon-nestjs-plain"></i>,
+      link: "https://nestjs.com/" 
+    },
+    {
+      id: 12,
+      name: "Next.JS",
+      icon: <i class="devicon-nextjs-plain"></i>,
+      link: "https://nextjs.org/"
+    },
+    {
       id: 5,
       name: "JAVA",
       icon: <i className="devicon-java-plain"></i>,
@@ -130,12 +142,6 @@ const App = () => {
       name: "MYSQL",
       icon: <i className="devicon-mysql-plain"></i>,
       link: "https://www.mysql.com/",
-    },
-    {
-      id: 8,
-      name: "GSAP",
-      icon: <iconify-icon icon="cib:greensock"></iconify-icon>,
-      link: "https://greensock.com/gsap/",
     },
     {
       id: 9,
@@ -302,8 +308,8 @@ const App = () => {
                     key={skill.id}
                     className=" icons-tech  flex items-center justify-center ">
                     <a href={skill.link} target="_blank">
-                      <div className=" flex items-center justify-center text-5xl md:text-8xl p-4 hover:bg-black hover:text-white">
-                        <div className="wrapper-icon">{skill.icon}</div>
+                      <div className="group flex items-center justify-center text-5xl md:text-8xl p-4 hover:bg-black hover:text-white">
+                        <div className="wrapper-icon group-hover:text-white text-[1em]">{skill.icon}</div>
                       </div>
                       {/* <p className=" ml-4">{skill.name}</p> */}
                     </a>
