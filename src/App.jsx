@@ -422,13 +422,13 @@ const App = () => {
             <h4>© 2023 Davy Rodríguez</h4>
             <ul className="flex gap-[3em]">
               <li>
-                <a href="" className="font-satoshi flex items-center gap-2">
+                <a href="https://github.com/Davs07" className="font-satoshi flex items-center gap-2">
                   <iconify-icon icon="line-md:github-loop"></iconify-icon>
                   Github
                 </a>
               </li>
               <li>
-                <a href="" className="font-satoshi flex items-center gap-2">
+                <a href="https://www.linkedin.com/in/davy-rodr%C3%ADguez-b80608268/" target="_blank" className="font-satoshi flex items-center gap-2">
                   <iconify-icon icon="line-md:linkedin"></iconify-icon>
                   Linkedin
                 </a>
