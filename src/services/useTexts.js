@@ -15,7 +15,7 @@ export const useTexts = () => {
   const allEnglish = !changeLanguage
     ? {
         navbar: ["Home", "Experience", "Projects", "Skills", "About", "Contact"],
-        heroGreeting: "Hello, I'm Davs.",
+        heroGreeting: "Hello, I'm Davy Rodriguez.",
         heroSubtitle: "Full Stack Developer focused on fintech, SaaS and high-complexity digital products.",
         heroDescription: "I've worked on products like LatinPay and Solucionalo.pe, building solutions with Laravel, React, Next.js, NestJS, TypeScript, AWS and multitenant architectures.",
         heroCtas: ["View Experience", "View Projects", "Contact Me"],
@@ -27,6 +27,8 @@ export const useTexts = () => {
             {
               name: "LatinPay",
               badge: "B2B Fintech Portal",
+              image: "https://placehold.co/800x450/0f172a/64748b?text=LatinPay",
+              imageAlt: "LatinPay portal screenshot",
               description: "LatinPay is a 100% digital fintech that facilitates payments between merchants and customers through mobile and internet banking, without the need for POS, focused on secure collections and low commissions.",
               detail: "In this product I participated in the web app, CMS optimization and integration with financial and operational services of the business ecosystem.",
               tasks: [
@@ -42,6 +44,8 @@ export const useTexts = () => {
             {
               name: "Solucionalo.pe",
               badge: "Multitenant SaaS",
+              image: "https://placehold.co/800x450/0f172a/64748b?text=Solucionalo.pe",
+              imageAlt: "Solucionalo.pe dashboard screenshot",
               description: "Solucionalo.pe is a SaaS platform for Peruvian companies to manage their digital Complaints Book, with SLA alerts, reports, QR, branch roles and AI assistance.",
               detail: "The product is focused on legal compliance, flow automation and centralization of claims on a single platform.",
               tasks: [
@@ -61,6 +65,8 @@ export const useTexts = () => {
             {
               name: "MANDO",
               badge: "SaaS Platform",
+              image: "https://placehold.co/800x450/f1f5f9/334155?text=MANDO",
+              imageAlt: "MANDO platform screenshot",
               description: "MANDO is a SaaS platform for small businesses that centralizes administration, sales and online visibility, with a basic marketplace to connect businesses with new customers.",
               detail: "One of my most complete projects, combining backend, frontend, integrations and product experience.",
               tasks: [
@@ -103,7 +109,7 @@ export const useTexts = () => {
       }
     : {
         navbar: ["Inicio", "Experiencia", "Proyectos", "Habilidades", "Sobre mí", "Contacto"],
-        heroGreeting: "Hola, soy Davs.",
+        heroGreeting: "Hola, soy Davy Rodriguez.",
         heroSubtitle: "Desarrollador Full Stack enfocado en fintech, SaaS y productos digitales de alta complejidad.",
         heroDescription: "He trabajado en productos como LatinPay y Solucionalo.pe, construyendo soluciones con Laravel, React, Next.js, NestJS, TypeScript, AWS y arquitecturas multitenant.",
         heroCtas: ["Ver experiencia", "Ver proyectos", "Contactarme"],
@@ -115,6 +121,8 @@ export const useTexts = () => {
             {
               name: "LatinPay",
               badge: "Portal Financiero B2B",
+              image: "https://placehold.co/800x450/0f172a/64748b?text=LatinPay",
+              imageAlt: "Captura del portal LatinPay",
               description: "LatinPay es una fintech 100% digital que facilita pagos entre comercios y clientes a través de banca móvil y banca por internet, sin necesidad de POS, con enfoque en cobros seguros y comisiones bajas.",
               detail: "En este producto participé en la app web, la optimización del CMS y la integración con servicios financieros y operativos del ecosistema del negocio.",
               tasks: [
@@ -130,6 +138,8 @@ export const useTexts = () => {
             {
               name: "Solucionalo.pe",
               badge: "SaaS Multitenant",
+              image: "https://placehold.co/800x450/0f172a/64748b?text=Solucionalo.pe",
+              imageAlt: "Captura del dashboard de Solucionalo.pe",
               description: "Solucionalo.pe es una plataforma SaaS para que empresas peruanas gestionen su Libro de Reclamaciones de forma digital, con alertas SLA, reportes, QR, roles por sucursal y asistencia de IA.",
               detail: "El producto está orientado a cumplimiento legal, automatización de flujos y centralización de reclamos en una sola plataforma.",
               tasks: [
@@ -149,6 +159,8 @@ export const useTexts = () => {
             {
               name: "MANDO",
               badge: "Plataforma SaaS",
+              image: "https://placehold.co/800x450/f1f5f9/334155?text=MANDO",
+              imageAlt: "Captura de la plataforma MANDO",
               description: "MANDO es una plataforma SaaS para pequeños negocios que centraliza administración, ventas y visibilidad online, con un marketplace básico para conectar empresas con nuevos clientes.",
               detail: "Es uno de mis proyectos más completos, porque combina backend, frontend, integraciones y experiencia de producto.",
               tasks: [
