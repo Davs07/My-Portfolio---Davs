@@ -900,10 +900,14 @@ const App = () => {
                 { icon: "devicon-nextjs-plain", label: "Next.js" },
                 { icon: "devicon-nestjs-plain", label: "NestJS" },
                 { icon: "devicon-laravel-plain", label: "Laravel" },
+                { icon: "devicon-java-plain", label: "Java" },
+                { icon: "devicon-spring-plain", label: "Spring" },
                 { icon: "devicon-postgresql-plain", label: "PostgreSQL" },
+                { icon: "devicon-mongodb-plain", label: "MongoDB" },
                 { icon: "devicon-docker-plain", label: "Docker" },
+                { icon: "devicon-amazonwebservices-plain-wordmark", label: "AWS" },
                 { icon: "devicon-git-plain", label: "Git" },
-                { icon: "devicon-tailwindcss-plain", label: "Tailwind" },
+                { icon: "devicon-figma-plain", label: "Figma" },
               ].map(({ icon, label }) => (
                 <div key={label} className="devicon-item">
                   <i className={`${icon} devicon-item__icon`}></i>

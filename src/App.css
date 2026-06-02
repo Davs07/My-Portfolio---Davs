@@ -592,6 +592,9 @@ body {
 @media (min-width: 1024px) {
   .skills-grid { grid-template-columns: repeat(3, 1fr); }
 }
+@media (min-width: 1280px) {
+  .skills-grid { grid-template-columns: repeat(4, 1fr); }
+}
 
 .stagger-item { will-change: transform, opacity; }
 
