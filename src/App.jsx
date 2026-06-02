@@ -433,7 +433,7 @@ const ProductCard = ({ product, dark, index = 0 }) => {
       <div className="product-card__footer">
         <div className="product-card__techs">
           {product.techs.map((t) => (
-            <TechBadge key={t} tech={t} dark={!dark} />
+            <TechBadge key={t} tech={t} dark={dark} />
           ))}
         </div>
         <a
@@ -520,7 +520,7 @@ const ProjectCard = ({ project, dark }) => {
       <div className="product-card__footer">
         <div className="product-card__techs">
           {project.techs.map((t) => (
-            <TechBadge key={t} tech={t} dark={!dark} />
+            <TechBadge key={t} tech={t} dark={dark} />
           ))}
         </div>
         <a
